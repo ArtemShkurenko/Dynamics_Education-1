@@ -18,6 +18,11 @@ namespace CSharpTest
            
             foreach (WeekEnd weekEnd in weekEnds)
             {
+                if (weekEnd.StartDate < startDate && weekEnd.EndDate >= startDate)
+                {
+                    int extraDays = (weekEnd.EndDate - startDate).Days +1;
+                    endDate = endDate.AddDays(extraDays);
+                }
                 if(weekEnd.StartDate <= endDate && weekEnd.StartDate >= startDate)
                 {
                     if(weekEnd.EndDate <= endDate)

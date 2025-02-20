@@ -76,5 +76,19 @@ namespace CSharpTest
             DateTime result = new WorkDayCalculator().Calculate(starDate, count, weekends);
             Assert.IsTrue(result.Equals(new DateTime(2025, 2, 21)));
         }
+        [TestMethod]
+        public void TestWeekendWeekendWasBeenWrong()
+        {
+            DateTime starDate = new DateTime(2021, 4, 21);
+            int count = 7;
+            WeekEnd[] weekends = new WeekEnd[3]
+            {
+                new WeekEnd (new DateTime(2021, 4, 20), new DateTime(2021, 4, 21)),
+                new WeekEnd (new DateTime(2021, 4, 28), new DateTime(2021, 4, 28)),
+                new WeekEnd (new DateTime(2021, 4, 29), new DateTime(2021, 4, 29)),
+            };
+            DateTime result = new WorkDayCalculator().Calculate(starDate, count, weekends);
+            Assert.IsTrue(result.Equals(new DateTime(2021, 4, 30)));
+        }
     }
 }
